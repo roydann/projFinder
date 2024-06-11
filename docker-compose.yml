@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  web:
+    image: projectf
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: royid123@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 5335332Royi
+    ports:
+      - "8080:80"
+    depends_on:
+      - web
+
+volumes:
+  pgadmin_data:
