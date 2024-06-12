@@ -15,8 +15,23 @@ SECRET_KEY = 'django-insecure-4v*$u1x@xm)jor*l)=&1oao*%7g8$&u0g34u#%!#2g3s%ppt9q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1', 'porjfinder-5811c408fdc0.herokuapp.com']
+ALLOWED_HOSTS = ['localhost','127.0.0.1', 'projjfinder-18a1a92b0ce8.herokuapp.com']
 
+
+
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'projjfinder-18a1a92b0ce8.herokuapp.com',
+]
+
+CSRF_COOKIE_DOMAIN = 'projjfinder-18a1a92b0ce8.herokuapp.com'
+
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
@@ -127,9 +142,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'projectFinder',
-        'USER': 'royid123',
-        'PASSWORD': '5335332Royi',
-        'HOST': 'database-1.c1kmu8e8wuy7.eu-north-1.rds.amazonaws.com',
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+        'HOST': os.environ.get('DB_HOST'),
         'PORT': '5432',
     }
 }
@@ -181,8 +196,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'projjectf@gmail.com'
-EMAIL_HOST_PASSWORD = 'lmwcktkoawqvgitu'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 
 # Static files (CSS, JavaScript, Images)
@@ -210,11 +225,11 @@ DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_FILE_OVERWRITE = False
 
-AWS_ACCESS_KEY_ID = 'AKIATCKATVZP6XTBJES5'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 
-AWS_SECRET_ACCESS_KEY = 'g/w9MxEsy1rpDJK2l1BNjoyTm6wfgciMsR0GJ4J0'
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
-AWS_STORAGE_BUCKET_NAME = 'projectfinder-bucket'
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
 
 if os.getcwd() == '/app':
