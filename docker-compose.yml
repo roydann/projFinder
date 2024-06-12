@@ -19,8 +19,8 @@ services:
     image: dpage/pgadmin4
     container_name: pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: royid123@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: 5335332Royi
+      PGADMIN_DEFAULT_EMAIL: *********
+      PGADMIN_DEFAULT_PASSWORD: *********
     ports:
       - "8080:80"
     depends_on:
